@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<!-- saved from url=(0079)https://str-vst-isam-sudir-2-usr.sigma.sbrf.ru:445/vpo-sp-qs-iis/prbr/newslist/ -->
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./Дайджест_files/jquery-3.5.1.min.js"> </script>
+    <title>Дайджест</title>
+	<link rel="stylesheet" href="./Дайджест_files/font-awesome.css">
+</head>
+<body>
+    <style>
+        html {
+            scroll-behavior: smooth; 
+            font-size: 100%;
+            
+        }
+        body {
+            font-family: Fontawesome-webfont;
+            /* font-family: Arial, Helvetica, sans-serif; */
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            padding: 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .head-info{
+            position: absolute;
+            z-index: 1;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 4rem;
+            text-align: center;
+        }
+
+        .head {
+            position: relative;
+            display: block;
+            background: #4BA6C1 url(https://str-vst-isam-sudir-2-usr.sigma.sbrf.ru:445/vpo-sp-qs-iis/prbr/cms/View/news/Picture/titul.jpg) no-repeat top center;
+            background-attachment: fixed; 
+            height: 100vh;
+            background-size: cover;
+        }
+        .head-date{
+            position:absolute;
+            right: 0;
+            top: 0;
+            font-size: 1.5rem;
+            color: white;
+            margin: 16px;
+            
+        }
+        .head-logo{
+            filter: brightness(0) invert(1);
+            position:absolute;
+            width: 10rem;
+            margin: 10px;
+        }
+
+        .svgHeader{
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%) translateY(-50%);
+        }
+        .menuSvg{
+            position: absolute;
+            cursor: pointer;
+            left: 0;
+            z-index: 100;
+            transition-property: all;
+            transition-duration: 300ms;
+        }
+        .svgNews{
+            position: absolute;
+            left: 50%;
+            bottom: -45px;
+            transform: translateX(-50%) translateY(-50%);
+        }
+        .svgImgLeft{
+            position: absolute;
+            left: -10px;
+            top: -10px;
+        }
+        .svgImgRight{
+            position: absolute;
+            right: -10px;
+            top: -10px;
+        }
+        .wrapper{
+            padding: 20px;
+        }
+        #menuBody{
+            background-color: white;
+            overflow: auto;
+            z-index: 2;
+            position:fixed;
+        }
+        .menu {
+            -webkit-box-shadow: 0px -6px 47px -1px rgba(0,0,0,0.33);
+            -moz-box-shadow: 0px -6px 47px -1px rgba(0,0,0,0.33);
+            box-shadow: 0px -6px 47px -1px rgba(0,0,0,0.33);
+        }
+        .menu-title{
+            position: relative;
+            z-index: 5;
+            background-color: rgb(75, 166, 193);
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            box-shadow: 0px 3px 17px -4px rgba(0,0,0,0.33);
+            font-size: 1.5rem;
+            padding: 5px 10px;
+            text-align:right;
+            height: 1.8rem;
+        }
+        .menu-title-fixed{
+            background-color: rgb(75, 166, 193);
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 1.5rem;
+            padding: 5px 10px;
+            box-shadow: 0px 3px 17px -4px rgba(0,0,0,0.33);
+            text-align: right;
+            z-index: 10;
+            position:fixed;
+            top: 0;
+            display: none;
+            height: 1.8rem;
+        }
+        .menu-body{
+            overflow: hidden;
+        }
+
+        .menu-section{
+            flex-grow: 1;
+        }
+
+        .menu-section-title{
+            padding: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 1.5rem;
+            color: #4BA6C1;
+        }
+
+        .menu-section-body{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 1.2rem;
+        }
+
+        .menu-section-body a{
+            text-decoration:none;
+            color:#000;
+        }
+
+        .menu-section-body a:visited {
+            color: #000;
+        }
+
+        .menu-section-body a:hover {
+            text-decoration: none;
+        }
+        .menu-logo {
+            position: absolute;
+            right: 10px;
+            filter: brightness(0) invert(1);
+            width: 6rem;
+        }
+        .news-section {
+            z-index: -100;
+        }
+
+        li {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 15px 15px 15px 30px;
+            transition-property: all;
+            transition-duration: 100ms;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 1rem;
+        }
+        li:hover{
+            background: #4BA6C1;
+            color: white;
+            cursor: pointer;
+        }
+        .news-section-title{
+            background-color: #4BA6C1;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 2rem;
+            padding: 10px 20px;
+        }
+        .news-section-bamk{
+            color:#4BA6C1;
+            font-family: Arial, Helvetica, sans-serif;
+            text-transform: uppercase;
+            font-size: 1.6rem;
+        }
+        .flex-reverse {
+            -webkit-flex-direction: row-reverse;
+            -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+        }
+        .flex-no-reverse {
+            -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+        .new-section-bank-body{
+        
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            flex-wrap: wrap;
+            -webkit-justify-content: flex-start;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+            -webkit-align-content: flex-start;
+            -ms-flex-line-pack: start;
+            align-content: flex-start;
+            align-items: stretch;
+            -webkit-align-items: stretch;
+            -ms-flex-align: stretch
+        }
+        .new-section-bank-text{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            flex-grow: 2;
+            width: 200px;
+        }
+        .new-section-bank-img{
+            position: relative;
+            margin: 10px 20px;
+            flex-grow: 1;
+            width: 200px;
+        }
+        .news-section-body{
+            position: relative;
+            padding: 30px 0;
+        }
+        .new-section-bank-text span{
+            color:#069;
+        }
+        a{
+            text-decoration:none;
+            color:#069;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        a:visited {
+            color: #069;
+        }
+
+        .head-icon {
+            padding: 5px;
+        }
+        .head-icon a {
+            padding: 5px;
+        }
+        .head-icon i {
+            color:white;
+        }
+
+        .links {
+            position: relative;
+            top: -40px;
+        }
+        
+        #swap{
+            z-index: 100;
+            position: fixed;
+            background: #4BA6C1;
+            transform: rotate(270deg) translateY(100%);
+            margin: 10px 10px;
+            width: 30px;
+            height: 30px;
+            opacity: 0.3;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.2s ease-out;
+            bottom: 0px;
+            right: 0;
+        }
+        #swap path{
+            fill: #fff;
+        }
+        #swap:hover{
+            opacity: 1;
+        }
+        @media (max-width: 700px) { 
+            html {
+                font-size: 80%;
+            }
+            .menuSvg{
+                top: 0px;
+            }
+        }
+        @media (max-width: 699px) { 
+            .menuSvg{
+                top: 4px;
+            }
+            #menuTitle, #menuTitleFixed {
+                padding: 17px 10px !important;
+            }
+            .menuSvg {
+                margin: 12px 10px 15px 10px !important;
+            }
+            .iconCalendar {
+                margin-right: 102.2px !important;
+            }
+        }
+        @media (max-width: 500px) { 
+            html {
+                font-size: 70%;
+            }
+            .head {
+                background-attachment:scroll;
+                height: 100vh;
+                background-size: cover;
+            }
+            .menuSvg{
+                top: 4px;
+            }
+
+        }
+        @media (max-width: 320px) { 
+            html {
+                font-size: 60%;
+            }
+            .menuSvg{
+                top: 2px;
+            }
+        }
+        #calendar-digest{
+            z-index: 100;
+            right: 0;
+            background: white;
+            position: fixed;
+            width: 200px;
+            box-shadow: 0px 3px 17px -4px rgba(0,0,0,0.33);
+        }
+        .calendar-head{
+            color: white;
+            background: #4BA6C1;
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            flex-wrap:nowrap;
+            justify-content:space-between;
+            align-items:center;
+        }
+        .calendar-head span{
+            margin: 5px 10px;
+        }
+        .calendar-body{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content:center;
+            border: 1px solid gray;
+        }
+        
+        .calendar-body-elem{
+            color: black;
+            cursor: pointer;
+            margin: 5px;
+            padding: 2px;
+            border: 1px solid gray;
+        }
+        .calendar-body-elem-aсtive{
+            color: white;
+            background: #4BA6C1;
+            cursor: pointer;
+            margin: 5px;
+            padding: 2px;
+            border: 1px solid gray;
+        }
+
+
+		.link_none:hover {
+			text-decoration: none;
+		}
+    </style>
+    <svg id="swap" viewBox="0 0 9 14">
+        <path class="svg-arrow" d="M6.660,8.922 L6.660,8.922 L2.350,13.408 L0.503,11.486 L4.813,7.000 L0.503,2.515 L2.350,0.592 L8.507,7.000 L6.660,8.922 Z"></path>
+    </svg>
+    
+   
+
+	
+	<div id="calendar-digest" style="display: none;">
+        <div class="calendar-head"><span style="cursor: pointer;" id="calendarPrev">&lt;</span><div>12.2020</div><span id="calendarNext"></span></div>
+        <div class="calendar-body"><a style="outline: none;text-decoration: none;" href="https://str-vst-isam-sudir-2-usr.sigma.sbrf.ru:445/vpo-sp-qs-iis/prbr/newsview/08.12.2020"><div class="calendar-body-elem-aсtive">08</div></a><a style="outline: none;text-decoration: none;" href="https://str-vst-isam-sudir-2-usr.sigma.sbrf.ru:445/vpo-sp-qs-iis/prbr/newsview/02.12.2020"><div class="calendar-body-elem">02</div></a><a style="outline: none;text-decoration: none;" href="https://str-vst-isam-sudir-2-usr.sigma.sbrf.ru:445/vpo-sp-qs-iis/prbr/newsview/01.12.2020"><div class="calendar-body-elem">01</div></a></div>
+        <div style="display: none;" class="calendar-data">
+					            <a href="https://str-vst-isam-sudir-2-usr.sigma.sbrf.ru:445/vpo-sp-qs-iis/prbr/newsview/01.12.2020">01.12.2020</a>
+					            <a href="https://str-vst-isam-sudir-2-usr.sigma.sbrf.ru:445/vpo-sp-qs-iis/prbr/newsview/02.12.2020">02.12.2020</a>
+					            <a href="https://str-vst-isam-sudir-2-usr.sigma.sbrf.ru:445/vpo-sp-qs-iis/prbr/newsview/08.12.2020" class="calendar-body-elem-aсtive">08.12.2020</a>
+					            <a href="https://str-vst-isam-sudir-2-usr.sigma.sbrf.ru:445/vpo-sp-qs-iis/prbr/newsview/27.11.2020">27.11.2020</a>
+			
+        </div>
+	</div>	
+    
+	<div id="menuBody" class="menu-body" style="transform: translateX(-100%);">
+			<div class="menu-section">
+            
+			<div class="menu-section-title">Встреча с органами власти</div>
+            <ul class="menu-section-body">
+															<a href="https://str-vst-isam-sudir-2-usr.sigma.sbrf.ru:445/vpo-sp-qs-iis/prbr/newslist/#new195" onclick="closeMenu()"><li>Цифровизация здравоохранения в Татарстане</li></a>
+																																				            </ul>
+			
+			
+        </div>
+			<div class="menu-section">
+            
+			<div class="menu-section-title">Новости региональной полки</div>
+            <ul class="menu-section-body">
+																																	<a href="https://str-vst-isam-sudir-2-usr.sigma.sbrf.ru:445/vpo-sp-qs-iis/prbr/newslist/#new197" onclick="closeMenu()"><li>Сбер заключил соглашение о сотрудничестве с Союзом потребительских обществ Удмуртской Республики</li></a>
+																		            </ul>
+			
+			
+        </div>
+			<div class="menu-section">
+            
+			<div class="menu-section-title">Финансирование/Инвестпроекты</div>
+            <ul class="menu-section-body">
+																																										<a href="https://str-vst-isam-sudir-2-usr.sigma.sbrf.ru:445/vpo-sp-qs-iis/prbr/newslist/#new198" onclick="closeMenu()"><li>Школа 800 открыла набор</li></a>
+									            </ul>
+			
+			
+        </div>
+			<div class="menu-section">
+            
+			<div class="menu-section-title">Экосистема</div>
+            <ul class="menu-section-body">
+																								<a href="https://str-vst-isam-sudir-2-usr.sigma.sbrf.ru:445/vpo-sp-qs-iis/prbr/newslist/#new196" onclick="closeMenu()"><li>В Казани открылась первая СБЕР ЕАПТЕКА </li></a>
+																											            </ul>
+			
+			
+        </div>
+				
+        <hr style="position: relative; background: #FFC000; height: 5px; border: 0; margin: 0; padding: 0;">
+    </div>
+    
+
+
+	
+	
+	
+		
+	
+	
+		<div class="news-section">
+		<div class="news-section-title">Встреча с органами власти</div>
+									<!--<pre></pre>-->
+								
+				
+								<div class="news-section-body">
+					<a class="links" name="new195"></a>
+					<div class="new-section-bank-body flex-no-reverse">
+					                                <div id="test" class="new-section-bank-img">
+                                <svg class="svgImgLeft" width="80" height="20">
+                                    <rect width="80" height="20" style="fill:#FFC000;"></rect>
+                                </svg>
+                                <img style="width: 100%;" src="./Дайджест_files/sass (7).jpg" alt="">
+                            </div>
+                        						<div class="new-section-bank-text">
+							<div class="news-section-bamk">Цифровизация здравоохранения в Татарстане</div>
+							<p><a href="http://kazan-news.net/politics/2020/11/27/272358.html" target="_blank">Сбер в Казани провёл онлайн-конференцию «Цифровые тенденции в медицине для представителей сферы здравоохранения Республики Татарстан.</a> В мероприятии приняли участие Президент Республики Рустам Минниханов, заместитель Председателя Правления Сбербанка Ольга Голодец, Вице-президент-Председатель Волго-Вятского банка Петр Колтыпин.  Темой конференции стало будущее цифровой медицины: как искусственный интеллект может помочь врачам, какие законы нужны, чтобы телемедицина стала эффективнее. В рамках мероприятия Рустам Минниханов и Ольга Голодец наградили лучших татарстанских врачей за активное участие в реализации проектов в сфере цифровизации медицинских услуг.Также в рамках конференции Петр Колтыпин и ректор Казанского федерального университета Ильшат Гафуров подписали соглашение о стратегическом партнерстве в сфере образования и здравоохранения. Заключенное соглашение предусматривает взаимодействие в области здравоохранения, образования, науки, разработки и реализации профессиональных образовательных программ, а также по вопросам проведения совместных исследований и реализации научно-исследовательских проектов, программ и решений в сфере здравоохранения. Казанский федеральный университет представил на конференции свой проект «Универсальная медицинская информационная система (МИС) на базе ИИ-решений для медицинских loT-устройств и диагностической техники». Проект представляет собой платформенное решение, совместимое с облачной платформой SberCloud и суперкомпьютером «Кристофари». В состав платформы входит единая интеграционная шина для подключаемых систем и ряд алгоритмов программных стеков для поддержки принятия решения, а также интеллектуальной диагностики. В продолжение мероприятия Рустам Минниханов встретился в Доме Правительства с Ольгой Голодец, где участники обсудили вопросы внедрения цифровых продуктов Сбера в сферу здравоохранения Татарстана и дальнейшие шаги реализации проектов по цифровизации. В рамках встречи Рустам Минниханов вручил Ольге Голодец медаль «100 лет образования ТАССР» за существенный вклад в укрепление социально-экономического потенциала Республики</p>
+						</div>
+					</div>
+					<svg class="svgNews" viewBox="0 0 200 50" width="200px" height="50px" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="25" cy="25px" r="10" fill="#0373C6"></circle>
+						<circle cx="50" cy="25px" r="10" fill="#2FA990"></circle>
+						<circle cx="75" cy="25px" r="10" fill="#DE6E1E"></circle>
+						<circle cx="100" cy="25px" r="10" fill="#C51914"></circle>
+						<circle cx="125" cy="25px" r="10" fill="#FC1916"></circle>
+						<circle cx="150" cy="25px" r="10" fill="#67657A"></circle>
+						<circle cx="175" cy="25px" r="10" fill="#7E44A9"></circle>
+					</svg>
+				</div>
+						<br>
+								
+								
+				
+																				    </div>
+	<br>
+		<div class="news-section">
+		<div class="news-section-title">Новости региональной полки</div>
+																			<!--<pre></pre>-->
+								
+				
+								
+								<div class="news-section-body">
+                    <a class="links" name="new197"></a>
+                    <div class="new-section-bank-body flex-reverse">
+                                                <div class="new-section-bank-text">
+                            <div class="news-section-bamk">Сбер заключил соглашение о сотрудничестве с Союзом потребительских обществ Удмуртской Республики</div>
+                            <p><a href="https://rus.coop/ru/articles/sberbank-i-udmurtpotrebsoyuz-budut-povyshat-dostupnost-finansovykh-uslug-na-sele/" target="_blank">Сбер заключил соглашение о сотрудничестве с Союзом потребительских обществ Удмуртской Республики</a>. Документ подписали Управляющий Удмуртским отделением Юрий Бычковский и Председатель Совета Удмуртпотребсоюза Рауф Каримов. Соглашение предусматривает развитие партнерских отношений и многосторонних экономических и социальных связей в Удмуртии, планируется активно развивать электронно-платежные сервисы, новые цифровые технологии, продвигать практику безналичных платежей для населения. Одним из важных направлений сотрудничества станет проект «Агентская сеть». Благодаря проекту жители отдаленных населенных пунктов смогут снимать деньги и оплачивать услуги ЖКХ непосредственно в магазине потребкооперации, не выезжая в райцентр или соседнее село к ближайшему отделению банка. Сейчас данная услуга доступна в 50 торговых точках, в будущем планируется довести число таких точек до 200. 
+</p>
+                        </div>
+						<svg class="svgNews" viewBox="0 0 200 50" width="200px" height="50px" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="25" cy="25px" r="10" fill="#0373C6"></circle>
+						<circle cx="50" cy="25px" r="10" fill="#2FA990"></circle>
+						<circle cx="75" cy="25px" r="10" fill="#DE6E1E"></circle>
+						<circle cx="100" cy="25px" r="10" fill="#C51914"></circle>
+						<circle cx="125" cy="25px" r="10" fill="#FC1916"></circle>
+						<circle cx="150" cy="25px" r="10" fill="#67657A"></circle>
+						<circle cx="175" cy="25px" r="10" fill="#7E44A9"></circle>
+						</svg>	
+                    </div>
+                </div>
+				<br>
+								
+				
+										    </div>
+	<br>
+		<div class="news-section">
+		<div class="news-section-title">Финансирование/Инвестпроекты</div>
+																								<!--<pre></pre>-->
+								
+				
+								<div class="news-section-body">
+					<a class="links" name="new198"></a>
+					<div class="new-section-bank-body flex-no-reverse">
+					                                <div id="test" class="new-section-bank-img">
+                                <svg class="svgImgLeft" width="80" height="20">
+                                    <rect width="80" height="20" style="fill:#FFC000;"></rect>
+                                </svg>
+                                <img style="width: 100%;" src="./Дайджест_files/sass (8).jpg" alt="">
+                            </div>
+                        						<div class="new-section-bank-text">
+							<div class="news-section-bamk">Школа 800 открыла набор</div>
+							<p><a href="https://moyaokruga.ru/diveevo-udarnik/Articles.aspx?articleId=414787" target="_blank">1 декабря стартовал набор в Школу 800 - образовательный проект, реализуемый  в рамках концессионного соглашения между регионом и Первой концессионной компанией «Просвещение». Финансовым партнёром АНО «Школа 800» выступает Сбербанк.</a>
+</p>
+						</div>
+					</div>
+					<svg class="svgNews" viewBox="0 0 200 50" width="200px" height="50px" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="25" cy="25px" r="10" fill="#0373C6"></circle>
+						<circle cx="50" cy="25px" r="10" fill="#2FA990"></circle>
+						<circle cx="75" cy="25px" r="10" fill="#DE6E1E"></circle>
+						<circle cx="100" cy="25px" r="10" fill="#C51914"></circle>
+						<circle cx="125" cy="25px" r="10" fill="#FC1916"></circle>
+						<circle cx="150" cy="25px" r="10" fill="#67657A"></circle>
+						<circle cx="175" cy="25px" r="10" fill="#7E44A9"></circle>
+					</svg>
+				</div>
+						<br>
+								
+								
+				
+					    </div>
+	<br>
+		<div class="news-section">
+		<div class="news-section-title">Экосистема</div>
+														<!--<pre></pre>-->
+								
+				
+								
+								<div class="news-section-body">
+                    <a class="links" name="new196"></a>
+                    <div class="new-section-bank-body flex-reverse">
+                                                <div class="new-section-bank-img">
+                            <svg class="svgImgLeft" width="80" height="20">
+                                <rect width="80" height="20" style="fill:#FFC000;"></rect>
+                            </svg>
+                            <img style="width: 100%;" src="./Дайджест_files/street (5).jpg" alt="Изображение">
+                        </div>
+                                                <div class="new-section-bank-text">
+                            <div class="news-section-bamk">В Казани открылась первая СБЕР ЕАПТЕКА </div>
+                            <p><a href="https://vestnik-rm.ru/articles/medicina/pervaya-sber-eapteka-otkrylas-v-kazani" target="_blank">В Казани открылась первая СБЕР ЕАПТЕКА - аптека с доставкой и собственным хабом.</a> Новая аптека позволит значительно увеличить доступность лекарств для жителей региона. В церемонии открытия приняли участие Президент Республики Татарстан Рустам Минниханов, заместитель Председателя Правления Сбербанка Ольга Голодец, Вице-президент-Председатель Волго-Вятского банка Петр Колтыпин и основатель и генеральный директор компании СБЕР ЕАПТЕКА Антон Буздалин. Первый заказ с лекарствами и товарами для здоровья сделал Президент Республики Татарстан – СБЕР ЕАПТЕКА направила его подопечным благотворительного фонда, который помогает тяжелобольным детям и их семьям. В ассортименте аптеки в Казани будет 18 000 лекарств и товаров для здоровья. Аптека будет обслуживать более 1000 заказов на доставку в день. Рустам Минниханов: «Реализация проекта СБЕР ЕАПТЕКА позволит значительно улучшить доступность лекарств для татарстанцев. Здесь предусмотрены все моменты: качество доставляемых лекарственных препаратов, широкий ассортимент и скорость доставки. Мы искренне благодарны СБЕР за то, что такая большая программа будет реализована у нас в республике. Стоит отметить, что число аптечных хабов будет только расти. Это очень важно. Не секрет, что в регионах имеются некоторые перебои с лекарствами. Но наличие такого серьезного игрока как СБЕР ЕАПТЕКА позитивно отразится на доступности медикаментов для нашего населения». Петр Колтыпин: «Я очень рад, что сегодня мы запустили здесь, в Казани, первую аптеку с доставкой. СБЕР ЕАПТЕКА - это действительно лучший сервис по доставке лекарств с широким ассортиментом. И благодаря тесному сотрудничеству с Правительством Республики Татарстан теперь он доступен и для жителей Казани, которые смогут заказывать необходимые лекарства не выходя из дома».</p>
+                        </div>
+						<svg class="svgNews" viewBox="0 0 200 50" width="200px" height="50px" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="25" cy="25px" r="10" fill="#0373C6"></circle>
+						<circle cx="50" cy="25px" r="10" fill="#2FA990"></circle>
+						<circle cx="75" cy="25px" r="10" fill="#DE6E1E"></circle>
+						<circle cx="100" cy="25px" r="10" fill="#C51914"></circle>
+						<circle cx="125" cy="25px" r="10" fill="#FC1916"></circle>
+						<circle cx="150" cy="25px" r="10" fill="#67657A"></circle>
+						<circle cx="175" cy="25px" r="10" fill="#7E44A9"></circle>
+						</svg>	
+                    </div>
+                </div>
+				<br>
+								
+				
+															    </div>
+	<br>
+	    
+	
+	
+    
+
+
+</body></html>
